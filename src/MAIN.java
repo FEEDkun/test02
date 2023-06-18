@@ -25,15 +25,15 @@ class InsertData {
 
  //   演示数据竞争
  //----------------------------------------------------------------------------------------------------------------
-     ArrayList<Integer> arrayList = new ArrayList<Integer>();
-
-    public  void insert(Thread thread){
-        for(int i=0;i<5;i++){
-            arrayList.add(i);
-            System.out.println(thread.getName()+"插入数据"+arrayList.get(i));
-
-        }
-    }
+//     ArrayList<Integer> arrayList = new ArrayList<Integer>();
+//
+//    public  void insert(Thread thread){
+//        for(int i=0;i<5;i++){
+//            arrayList.add(i);
+//            System.out.println(thread.getName()+"插入数据"+arrayList.get(i));
+//
+//        }
+//    }
 //----------------------------------------------------------------------------------------------------------------
 
 
@@ -59,27 +59,29 @@ class InsertData {
 
     // ----------------------------------------------------------------------------------------------------------------
 
-//    Lock lock = new ReentrantLock();
-//    ArrayList<Integer> arrayList = new ArrayList<Integer>();
-//
-//    public void insert(Thread thread) {
+    Lock lock = new ReentrantLock();
+    ArrayList<Integer> arrayList = new ArrayList<Integer>();
+
+    public void insert(Thread thread) {
+        lock.lock();
 //        if (lock.tryLock()) {
-//            try {
-//                System.out.println(thread.getName() + "得到了锁");
-//                for (int i = 0; i < 5; i++) {
-//                    arrayList.add(i);
-//                    System.out.println(thread.getName()+"在ArrayList内加入："+arrayList.get(i));
-//                }
-//            } catch (Exception e) {
-//                // TODO: handle exception
-//            } finally {
-//                System.out.println(thread.getName() + "释放了锁");
-//                lock.unlock();
-//            }
-//        } else {
+            try {
+                System.out.println(thread.getName() + "得到了锁");
+                for (int i = 0; i < 5; i++) {
+                    arrayList.add(i);
+                    System.out.println(thread.getName()+"在ArrayList内加入："+arrayList.get(i));
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            } finally {
+                System.out.println(thread.getName() + "释放了锁");
+                lock.unlock();
+            }
+//        }
+//        else {
 //            System.out.println(thread.getName() + "获取锁失败");
 //        }
-//    }
+    }
 
     // ----------------------------------------------------------------------------------------------------------------
 
