@@ -41,14 +41,14 @@ class InsertData {
     //方法一：加synchronized关键字
     //----------------------------------------------------------------------------------------------------------------
 
-//     ArrayList<Integer> arrayList = new ArrayList<Integer>();
-//
-//    public synchronized void insert(Thread thread){
-//        for(int i=0;i<5;i++){
-//            System.out.println(thread.getName()+"插入数据"+i);
-//            arrayList.add(i);
-//        }
-//    }
+     ArrayList<Integer> arrayList = new ArrayList<Integer>();
+
+    public synchronized void insert(Thread thread){
+        for(int i=0;i<5;i++){
+            System.out.println(thread.getName()+"插入数据"+i);
+            arrayList.add(i);
+        }
+    }
 
 
 
